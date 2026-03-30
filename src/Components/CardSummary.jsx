@@ -1,13 +1,24 @@
 import React from "react";
 
-function CardSummary({ name, qty, image, price, onIncrement, onDecrement }) {
+function CartModal({
+  id,
+  name,
+  qty,
+  image,
+  price,
+  onIncrement,
+  onDecrement,
+  removeFromCart,
+}) {
   const subtotal = qty * (price || 0);
+
+  console.log(`removeFromCart: ${removeFromCart}`);
 
   return (
     <div className="cart-Container">
       {image && <img src={image} alt={name} className="summary-image" />}
 
-      <section class="cart-section2">
+      <section>
         <h2>{name}</h2>
         <br />
         <p>Price: Rs {price?.toFixed(2) ?? "0.00"}</p>
@@ -23,10 +34,15 @@ function CardSummary({ name, qty, image, price, onIncrement, onDecrement }) {
           </button>
         </div>
         <br />
+
         <h3>Subtotal: Rs {subtotal.toFixed(2)}</h3>
+
+        <button className="remove-btn" onClick={() => removeFromCart(id)}>
+          Remove
+        </button>
       </section>
     </div>
   );
 }
 
-export default CardSummary;
+export default CartModal;

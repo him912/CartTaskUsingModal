@@ -4,14 +4,13 @@
  */
 
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+
 import axios from "axios";
 
 import Header from "./Components/Header";
 import ProductCard from "./Components/ProductCard";
 import ProductModel from "./Components/ProductModel";
-import Cart from "./pages/Cart";
-
+import CartModal from "./pages/CartModal";
 import "./App.css";
 
 const FAKE_STORE_API = "https://fakestoreapi.com/products";
@@ -22,6 +21,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cart, setCart] = useState([]);
+  const [showCartModal, setShowCartModal] = useState(false);
 
   /**
    * Fetch products from Fake Store API on component mount
@@ -48,22 +48,17 @@ function App() {
     setSelectedProduct(null);
   };
 
-  /**
-   * Add product to cart or increment quantity if already in cart
-   * @param {Object} product - Product object to add
-   */
   const addToCart = (product) => {
-    setCart((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
-      if (existing) {
-        // Product already in cart, increment quantity
-        return prev.map((item) =>
-          item.id === product.id ? { ...item, qty: item.qty + 1 } : item,
-        );
-      }
-      // New product, add with qty = 1
-      return [...prev, { ...product, qty: 1 }];
-    });
+    const existing = cart.find((item) => item.id === product.id);
+
+    if (existing) {
+      // Product already in cart, show alert
+      alert("Item already added to the cart");
+      return;
+    }
+
+    // New product, add with qty = 1
+    setCart((prev) => [...prev, { ...product, qty: 1 }]);
     closeModal();
   };
 
@@ -85,6 +80,15 @@ function App() {
     );
   };
 
+  const removeFromCart = (productId) => {
+    setCart((prev) => prev.filter((item) => item.id !== productId));
+  };
+  /**
+   * Toggle cart modal visibility
+   */
+  const toggleCartModal = () => {
+    setShowCartModal(!showCartModal);
+  };
   /**
    * Open product modal for details view
    * @param {Object} product - Product to display
@@ -94,46 +98,27 @@ function App() {
   };
 
   // Calculate total cart count
-  const totalCartCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  // const totalCartCount = cart.reduce((sum, item) => sum + item.qty, 0);
   const uniqueCount = cart.length;
 
   return (
     <div>
-      <Header cartCount={uniqueCount} />
+      <Header cartCount={uniqueCount} toggleCartModal={toggleCartModal} />
 
-      <Routes>
-        {/* Home Route - Product Listing */}
-        <Route
-          path="/"
-          element={
-            loading ? (
-              <p className="message">Loading products...</p>
-            ) : (
-              <div className="product-grid">
-                {products.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    openModel={openModel}
-                  />
-                ))}
-              </div>
-            )
-          }
-        />
-
-        {/* Cart Route - Order Summary */}
-        <Route
-          path="/cart"
-          element={
-            <Cart
-              product={cart}
-              onIncrement={(id) => changeQty(id, 1)}
-              onDecrement={(id) => changeQty(id, -1)}
+      {/* Home - Product Listing */}
+      {loading ? (
+        <p className="message">Loading products...</p>
+      ) : (
+        <div className="product-grid">
+          {products.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              openModel={openModel}
             />
-          }
-        />
-      </Routes>
+          ))}
+        </div>
+      )}
 
       {/* Product Details Modal */}
       {selectedProduct && (
@@ -141,6 +126,18 @@ function App() {
           product={selectedProduct}
           closeModal={closeModal}
           addToCart={addToCart}
+        />
+      )}
+
+      {/* Cart - Order Summary */}
+      {/* Cart Modal */}
+      {showCartModal && (
+        <CartModal
+          product={cart}
+          toggleCartModal={toggleCartModal}
+          onIncrement={(id) => changeQty(id, 1)}
+          onDecrement={(id) => changeQty(id, -1)}
+          removeFromCart={removeFromCart}
         />
       )}
     </div>
