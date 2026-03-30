@@ -29,6 +29,79 @@ body {
   max-height: 50vh;
   overflow-y: auto;
 }
+.cart-Container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.summary-image {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Right section */
+.cart-Container section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Quantity + Remove row */
+.action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Qty controls */
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+/* Buttons */
+.add-Increament-btn,
+.add-Decrement-btn {
+  background: #f0f0f0;
+  border: none;
+  padding: 4px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.add-Increament-btn:hover,
+.add-Decrement-btn:hover {
+  background: #ddd;
+}
+
+/* Qty number */
+.amount {
+  min-width: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Remove button */
+.remove-btn {
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.remove-btn:hover {
+  background: #d9363e;
+}
 
 .cart-item-wrapper {
   display: flex;
@@ -459,4 +532,78 @@ body {
   padding: 12px 18px;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.cart-Container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.summary-image {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Right section */
+.cart-Container section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Quantity + Remove row */
+.action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Qty controls */
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+/* Buttons */
+.add-Increament-btn,
+.add-Decrement-btn {
+  background: #f0f0f0;
+  border: none;
+  padding: 4px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.add-Increament-btn:hover,
+.add-Decrement-btn:hover {
+  background: #ddd;
+}
+
+/* Qty number */
+.amount {
+  min-width: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Remove button */
+.remove-btn {
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.remove-btn:hover {
+  background: #d9363e;
 }

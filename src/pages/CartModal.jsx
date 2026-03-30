@@ -8,7 +8,7 @@ function CartModal({
   onDecrement,
   removeFromCart,
 }) {
-  console.log(`removeFromCart: ${removeFromCart}`);
+  // console.log(`removeFromCart: ${removeFromCart}`);
 
   const totalItems = product.reduce((sum, item) => sum + item.qty, 0);
   const totalValue = product.reduce(

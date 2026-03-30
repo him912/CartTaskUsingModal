@@ -12,7 +12,7 @@ function CartModal({
 }) {
   const subtotal = qty * (price || 0);
 
-  console.log(`removeFromCart: ${removeFromCart}`);
+  // console.log(`removeFromCart: ${removeFromCart}`);
 
   return (
     <div className="cart-Container">
