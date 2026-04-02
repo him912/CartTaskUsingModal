@@ -1,6 +1,18 @@
 # React Fake Store API Task
 
-A modern React e-commerce application built with **Vite**, **React Router**, and **Axios** that displays products from the [Fake Store API](https://fakestoreapi.com/).
+---
+
+## 🛒 Add to Cart Task Using Modal
+
+### Overview
+
+The "Add to Cart" functionality is completely modal-based. Users click on a product to open a detailed view modal, then add items to cart without leaving the page. This creates a smooth, uninterrupted shopping experience.
+
+### Complete User Flow
+
+#### **Step 1: Product Selection**
+
+A modern React e-commerce application built with **Vite**, **React Router**, and **Axios** that displays products from the [Fake Store API](https://dummyjson.com/products/).
 
 ## 📋 Features
 
@@ -11,13 +23,5 @@ A modern React e-commerce application built with **Vite**, **React Router**, and
 - 📊 **Order Summary** - See cart totals and item breakdown
 - 🎯 **Responsive Design** - Clean, user-friendly interface
 - ⚡ **Fast Performance** - Built with Vite for optimal speed
-
-## 🛠️ Tech Stack
-
-- **React 19** - UI library
-- **React Router DOM 6** - Client-side routing
-- **Vite 8** - Build tool
-- **Axios** - HTTP client for API calls
-- **CSS3** - Styling
 
 ## 📦 Project Structure

@@ -10,10 +10,14 @@ import axios from "axios";
 import Header from "./Components/Header";
 import ProductCard from "./Components/ProductCard";
 import ProductModel from "./Components/ProductModel";
-import CartModal from "./pages/CartModal";
+import CartModal from "./Components/CartModal";
 import "./App.css";
+import "./styles/ProductCard.css";
+import "./styles/Header.css";
+import "./styles/ProductModel.css";
+import "./styles/CartModal.css";
 
-const FAKE_STORE_API = "https://fakestoreapi.com/products";
+const FAKE_STORE_API = "https://dummyjson.com/products";
 
 function App() {
   // State Management
@@ -30,7 +34,9 @@ function App() {
     const fetchProducts = async () => {
       try {
         const response = await axios(FAKE_STORE_API);
-        setProducts(response.data);
+        console.log(response.data.products);
+        // console.log(response.data.total);
+        setProducts(response.data.products);
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
@@ -133,7 +139,7 @@ function App() {
       {/* Cart Modal */}
       {showCartModal && (
         <CartModal
-          product={cart}
+          cartItems={cart}
           toggleCartModal={toggleCartModal}
           onIncrement={(id) => changeQty(id, 1)}
           onDecrement={(id) => changeQty(id, -1)}

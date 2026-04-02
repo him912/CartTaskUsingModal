@@ -1,32 +1,173 @@
 import React from "react";
 
 function ProductModel({ product, closeModal, addToCart }) {
+  // Calculate discounted price
+  const originalPrice = product.price;
+  const discountPercentage = product.discountPercentage || 0;
+  const discountedPrice =
+    originalPrice - (originalPrice * discountPercentage) / 100;
+
+  // Get rating
+  const rating = product.rating?.rate || product.rating || 0;
+  const ratingRounded = Math.round(rating * 10) / 10;
+  const ratingCount = product.rating?.count || 0;
+
+  // Get stock status
+  const inStock = product.stock > 0;
+  const stock = product.stock || 0;
+
+  // Star rating component
+  const StarRating = ({ rate, size = "1.2em" }) => {
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      stars.push(
+        <span
+          key={i}
+          className={`star-modal ${i < Math.floor(rate) ? "filled" : ""}`}
+          style={{ fontSize: size }}
+        >
+          ★
+        </span>,
+      );
+    }
+    return stars;
+  };
+
   return (
-    <div className="modal-backdrop">
-      <div className="modal">
+    <div className="modal-backdrop" onClick={closeModal}>
+      <div className="modal modal-product" onClick={(e) => e.stopPropagation()}>
+        {/* Close Button */}
         <button className="close-btn" onClick={closeModal}>
-          X
+          ✕
         </button>
-        <img
-          src={product.image}
-          alt={product.title}
-          className="product-image"
-        />
 
-        <h2>{product.title}</h2>
-        <p>
-          <strong>Category:</strong>
-          {product.category}
-        </p>
-        <p>
-          <strong>Price:</strong> {Math.round(product.price * 5)}
-        </p>
+        {/* Top Badges Section */}
+        <div className="modal-badges">
+          {discountPercentage > 0 && (
+            <span className="modal-discount-badge">
+              -{Math.round(discountPercentage)}% OFF
+            </span>
+          )}
+          <span className="modal-category-badge">{product.category}</span>
+          <span
+            className={`modal-stock-badge ${inStock ? "in-stock" : "out-of-stock"}`}
+          >
+            {inStock ? "✓ In Stock" : "✗ Out of Stock"}
+          </span>
+        </div>
 
-        <p className="description">{product.description}</p>
+        {/* Image Section */}
+        <div className="modal-image-container">
+          <img
+            src={product.thumbnail || product.image}
+            alt={product.title}
+            className="modal-product-image"
+          />
+          {/* {discountPercentage > 0 && (
+            <div className="discount-circle">
+              {Math.round(discountPercentage)}%
+            </div>
+          )} */}
+        </div>
 
-        <button className="add-btn" onClick={() => addToCart(product)}>
-          Add to Cart
+        {/* Product Title */}
+        <h2 className="modal-title">{product.title}</h2>
+
+        {/* Rating Section */}
+        {/* <div className="modal-rating-section">
+          <div className="modal-stars">
+            <StarRating rate={ratingRounded} size="1.5em" />
+          </div>
+          <div className="modal-rating-info">
+            <span className="modal-rating-number">{ratingRounded}</span>
+            <span className="modal-rating-count">({ratingCount} reviews)</span>
+          </div>
+        </div> */}
+
+        {/* Category & Brand Info */}
+        <div className="modal-info-grid">
+          <div className="modal-info-item">
+            <span className="modal-info-label">Category</span>
+            <span className="modal-info-value">{product.category}</span>
+          </div>
+          {product.brand && (
+            <div className="modal-info-item">
+              <span className="modal-info-label">Brand</span>
+              <span className="modal-info-value">{product.brand}</span>
+            </div>
+          )}
+          <div className="modal-info-item">
+            <span className="modal-info-label">Availability</span>
+            <span
+              className={`modal-info-value ${inStock ? "stock-yes" : "stock-no"}`}
+            >
+              {inStock ? `${stock} items` : "Out of Stock"}
+            </span>
+          </div>
+        </div>
+
+        {/* Price Section */}
+        <div className="modal-price-container">
+          {discountPercentage > 0 ? (
+            <>
+              <div className="modal-price-row">
+                <span className="modal-original-price">
+                  ₹{Math.round(originalPrice * 5)}
+                </span>
+                <span className="modal-discount-text">
+                  {Math.round(discountPercentage)}% OFF
+                </span>
+              </div>
+              <div className="modal-price-row">
+                <span className="modal-discounted-price">
+                  ₹{Math.round(discountedPrice * 5)}
+                </span>
+              </div>
+            </>
+          ) : (
+            <div className="modal-price-row">
+              <span className="modal-discounted-price">
+                ₹{Math.round(originalPrice * 5)}
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* Description */}
+        <div className="modal-description-section">
+          <h3 className="modal-description-title">About this product</h3>
+          <p className="modal-description">{product.description}</p>
+        </div>
+
+        {/* Stock Warning */}
+        {inStock && stock < 5 && (
+          <div className="modal-stock-warning">
+            ⚠️ Only {stock} items left! Order soon.
+          </div>
+        )}
+
+        {/* Add to Cart Button */}
+        <button
+          className="modal-add-btn"
+          onClick={() => addToCart(product)}
+          disabled={!inStock}
+        >
+          {inStock ? "🛒 Add to Cart" : "Out of Stock"}
         </button>
+
+        {/* Additional Info */}
+        <div className="modal-additional-info">
+          <div className="modal-delivery-info">
+            <span className="delivery-icon">🚚</span>
+            <span className="delivery-text">
+              Free delivery on orders above ₹500
+            </span>
+          </div>
+          <div className="modal-return-info">
+            <span className="return-icon">↩️</span>
+            <span className="return-text">7-day easy returns</span>
+          </div>
+        </div>
       </div>
     </div>
   );

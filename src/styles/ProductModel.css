@@ -1,0 +1,88 @@
+.modal-product {
+  background: #fffbf0;
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+  padding: 0;
+  position: relative;
+  max-height: 95vh;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+/* Scrollable Content Area */
+.modal-product-content {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--spacing-2xl);
+  flex: 1;
+}
+
+/* Custom Scrollbar */
+.modal-product-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-product-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.modal-product-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.modal-product-content::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+
+/* Firefox Scrollbar */
+.modal-product-content {
+  scrollbar-width: thin;
+  scrollbar-color: #c1c1c1 #f1f1f1;
+}
+
+/* Modal Footer - Sticky at Bottom */
+.modal-footer {
+  padding: var(--spacing-xl);
+  border-top: 1px solid var(--border-color);
+  background: rgb(110, 72, 72);
+  flex-shrink: 0;
+}
+
+.modal-add-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--success-color), #229954);
+  color: rgb(19, 17, 17);
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.modal-add-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #229954, #1e8449);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+}
+
+.modal-add-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.modal-add-btn:disabled {
+  background: #9f6f6f;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
