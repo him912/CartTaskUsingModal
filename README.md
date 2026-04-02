@@ -12,7 +12,7 @@ The "Add to Cart" functionality is completely modal-based. Users click on a prod
 
 #### **Step 1: Product Selection**
 
-A modern React e-commerce application built with **Vite**, **React Router**, and **Axios** that displays products from the [Fake Store API](https://dummyjson.com/products/).
+A modern React e-commerce application built with **Vite**,and **Axios** that displays products from the [Fake Store API](https://dummyjson.com/products/).
 
 ## 📋 Features
 
