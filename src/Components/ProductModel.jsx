@@ -72,18 +72,6 @@ function ProductModel({ product, closeModal, addToCart }) {
 
         {/* Product Title */}
         <h2 className="modal-title">{product.title}</h2>
-
-        {/* Rating Section */}
-        {/* <div className="modal-rating-section">
-          <div className="modal-stars">
-            <StarRating rate={ratingRounded} size="1.5em" />
-          </div>
-          <div className="modal-rating-info">
-            <span className="modal-rating-number">{ratingRounded}</span>
-            <span className="modal-rating-count">({ratingCount} reviews)</span>
-          </div>
-        </div> */}
-
         {/* Category & Brand Info */}
         <div className="modal-info-grid">
           <div className="modal-info-item">
@@ -147,27 +135,18 @@ function ProductModel({ product, closeModal, addToCart }) {
         )}
 
         {/* Add to Cart Button */}
-        <button
-          className="modal-add-btn"
-          onClick={() => addToCart(product)}
-          disabled={!inStock}
-        >
-          {inStock ? "🛒 Add to Cart" : "Out of Stock"}
-        </button>
+        <div className="button-row-add-btn">
+          <button
+            className="modal-add-btn"
+            onClick={() => addToCart(product)}
+            disabled={!inStock}
+          >
+            {inStock ? "🛒 Add to Cart" : "Out of Stock"}
+          </button>
+        </div>
 
         {/* Additional Info */}
-        <div className="modal-additional-info">
-          <div className="modal-delivery-info">
-            <span className="delivery-icon">🚚</span>
-            <span className="delivery-text">
-              Free delivery on orders above ₹500
-            </span>
-          </div>
-          <div className="modal-return-info">
-            <span className="return-icon">↩️</span>
-            <span className="return-text">7-day easy returns</span>
-          </div>
-        </div>
+        <div className="modal-additional-info"></div>
       </div>
     </div>
   );

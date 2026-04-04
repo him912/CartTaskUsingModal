@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
 }
+
 /* Scrollable Content Area */
 .modal-product-content {
   overflow-y: auto;
@@ -49,16 +50,21 @@
 .modal-footer {
   padding: var(--spacing-xl);
   border-top: 1px solid var(--border-color);
-  background: rgb(110, 72, 72);
+  background: #fffbf0;
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-add-btn {
-  width: 100%;
-  background: linear-gradient(135deg, var(--success-color), #229954);
+  width: 50%;
+  background: #d89292;
   color: rgb(19, 17, 17);
   border: none;
   padding: 10px;
+  align-content: center;
+  justify-content: center;
   border-radius: 12px;
   padding: var(--spacing-lg);
   border-radius: var(--radius-md);
@@ -69,6 +75,11 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.button-row-add-btn {
+  display: flex;
+  justify-content: center;
 }
 
 .modal-add-btn:hover:not(:disabled) {
