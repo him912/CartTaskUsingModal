@@ -148,7 +148,7 @@
 /* Remove Button */
 .remove-btn {
   background-color: var(--error-color);
-  color: rgb(221, 144, 144);
+  color: rgb(168, 80, 80);
   border: none;
 
   padding: 6px 12px;

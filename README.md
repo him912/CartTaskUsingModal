@@ -1,7 +1,5 @@
 # React Fake Store API Task
-
 ---
-
 ## 🛒 Add to Cart Task Using Modal
 
 ### Overview

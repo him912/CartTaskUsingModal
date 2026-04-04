@@ -7,7 +7,7 @@ function Header({ cartCount, toggleCartModal }) {
 
       <h2 className="mystore"> 🛒 Store .</h2>
 
-      <div className="cart-box">
+      <div className="cart-box" onClick={toggleCartModal}>
         <button
           className="cart-btn"
           onClick={toggleCartModal}
