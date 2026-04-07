@@ -34,8 +34,6 @@ function App() {
     const fetchProducts = async () => {
       try {
         const response = await axios(FAKE_STORE_API);
-        // console.log(response.data.products);
-        // console.log(response.data.total);
         setProducts(response.data.products);
       } catch (error) {
         console.error("Error fetching products:", error);
